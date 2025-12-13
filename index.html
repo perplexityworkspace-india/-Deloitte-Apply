@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deloitte Job Opportunity - Students Aura</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004999;
+            --accent: #00bfff;
+            --bg: #0a0e27;
+            --surface: #1a1f3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b9c1;
+            --success: #4caf50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a2947 50%, #0a0e27 100%);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .job-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 32px 24px;
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 24px;
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .company-logo {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .company-info h2 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .company-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .job-details {
+            margin-bottom: 24px;
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            font-size: 14px;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .job-description {
+            background: rgba(0, 102, 204, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .requirements {
+            margin-bottom: 24px;
+        }
+
+        .requirements h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .requirement-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .requirement-check {
+            color: var(--primary);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .action-section {
+            margin-bottom: 16px;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 102, 204, 0.4);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
+        }
+
+        .action-btn.applied {
+            background: linear-gradient(135deg, var(--success), #45a049);
+            cursor: default;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .button-text {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .follow-note {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 13px;
+            color: #ffc107;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .follow-note.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--success);
+            display: none;
+            margin-bottom: 16px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .footer-note strong {
+            color: var(--accent);
+        }
+
+        @media (max-width: 480px) {
+            .brand {
+                font-size: 24px;
+            }
+
+            .job-card {
+                padding: 24px 16px;
+            }
+
+            .company-header {
+                gap: 12px;
+            }
+
+            .company-logo {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+            }
+
+            .job-title {
+                font-size: 16px;
+            }
+
+            .action-btn {
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="brand">Students Aura</div>
+            <div class="subtitle">Job Opportunity</div>
+        </div>
+
+        <div class="job-card">
+            <div class="company-header">
+                <div class="company-logo">DLT</div>
+                <div class="company-info">
+                    <h2>Deloitte</h2>
+                    <p>Global Consulting & Professional Services</p>
+                </div>
+            </div>
+
+            <div class="success-message" id="successMsg">
+                ✓ Application submitted successfully! Best of luck with your interview.
+            </div>
+
+            <div class="follow-note" id="followNote">
+                📱 Please follow on Instagram first, then click Apply when you return!
+            </div>
+
+            <div class="job-details">
+                <div class="job-title">Multiple Fresher Positions</div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Experience Level</span>
+                    <span class="detail-value">Freshers & Interns</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Location</span>
+                    <span class="detail-value">India (Multiple Cities)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Salary</span>
+                    <span class="detail-value">Competitive Package</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Job Type</span>
+                    <span class="detail-value">Full-Time / Internship</span>
+                </div>
+            </div>
+
+            <div class="job-description">
+                Deloitte is hiring talented freshers and interns across multiple domains. Join a global consulting leader and build your career in Consulting, Technology, Finance, Risk & Compliance, and more. Work on transformative projects that impact global businesses.
+            </div>
+
+            <div class="requirements">
+                <h3>Requirements</h3>
+                <div class="requirement-item">
+                    <span class="requirement-check">✓</span>
+                    <span>Bachelor's degree in any discipline</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="requirement-check">✓</span>
+                    <span>Strong analytical and problem-solving abilities</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="requirement-check">✓</span>
+                    <span>Excellent communication and interpersonal skills</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="requirement-check">✓</span>
+                    <span>Passion for learning and professional growth</span>
+                </div>
+                <div class="requirement-item">
+                    <span class="requirement-check">✓</span>
+                    <span>Ready to work on real-world business challenges</span>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button class="action-btn" id="actionBtn">
+                    <span class="button-text">
+                        <span id="btnIcon">📱</span>
+                        <span id="btnText">Follow to unlock apply Link</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <strong>How it works:</strong> Follow Students Aura on Instagram for exclusive job updates and insider tips, then apply directly to Deloitte's career portal.
+        </div>
+    </div>
+
+    <script>
+        const actionBtn = document.getElementById('actionBtn');
+        const followNote = document.getElementById('followNote');
+        const successMsg = document.getElementById('successMsg');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+
+        // Job apply link - Replace with your actual job application URL
+        const JOB_APPLY_URL = 'https://southasiacareers.deloitte.com/search/?createNewAlert=false&q=freshers&locationsearch=&optionsFacetsDD_city=&optionsFacetsDD_customfield2='; // Deloitte Freshers Portal
+        const INSTAGRAM_URL = 'https://www.instagram.com/students_aura/'; // Students Aura Instagram
+
+        // Storage key
+        const FOLLOWED_KEY = 'students_aura_followed';
+
+        // Initialize on page load
+        function initializePage() {
+            const hasFollowed = localStorage.getItem(FOLLOWED_KEY);
+            
+            if (hasFollowed) {
+                // User has already followed - show Apply button
+                showApplyState();
+            } else {
+                // User hasn't followed yet - show Follow button
+                showFollowState();
+            }
+        }
+
+        function showFollowState() {
+            actionBtn.classList.remove('applied');
+            btnIcon.textContent = '📱';
+            btnText.textContent = 'Follow to unlock apply Link';
+            followNote.classList.remove('show');
+            successMsg.classList.remove('show');
+        }
+
+        function showApplyState() {
+            actionBtn.classList.remove('applied');
+            btnIcon.textContent = '✓';
+            btnText.textContent = 'Apply Now';
+            followNote.classList.remove('show');
+        }
+
+        function showAppliedState() {
+            actionBtn.classList.add('applied');
+            btnIcon.textContent = '✓';
+            btnText.textContent = 'Applied Successfully';
+            successMsg.classList.add('show');
+            actionBtn.disabled = true;
+        }
+
+        // Button click handler
+        actionBtn.addEventListener('click', function() {
+            const hasFollowed = localStorage.getItem(FOLLOWED_KEY);
+
+            if (!hasFollowed) {
+                // First time - open Instagram
+                window.open(INSTAGRAM_URL, '_blank');
+                
+                // Mark as followed
+                localStorage.setItem(FOLLOWED_KEY, 'true');
+                
+                // Show follow note
+                followNote.classList.add('show');
+                
+                // Show apply state after a short delay
+                setTimeout(() => {
+                    showApplyState();
+                }, 1000);
+            } else {
+                // Already followed - open job application
+                window.open(JOB_APPLY_URL, '_blank');
+                
+                // Show applied state
+                showAppliedState();
+            }
+        });
+
+        // Check if user came back from Instagram
+        window.addEventListener('focus', function() {
+            const hasFollowed = localStorage.getItem(FOLLOWED_KEY);
+            if (hasFollowed && !actionBtn.classList.contains('applied')) {
+                showApplyState();
+            }
+        });
+
+        // Initialize page on load
+        initializePage();
+    </script>
+</body>
+</html>
